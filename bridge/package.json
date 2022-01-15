@@ -1,0 +1,15 @@
+{
+  "name": "polypoc_bridge",
+  "version": "1.0.0",
+  "description": "A brige between Goerli and polyPoc for FRLC Token",
+  "author": "Florent Boutin <fboutin76@gmail.com>",
+  "main": "bridge-polypoc.js",
+  "scripts": {
+    "start": "node bridge-polypoc.js"
+  },
+  "dependencies": {
+    "web3": "^1.6.1",
+    "express": "^4.16.1",
+    "dotenv": "^11.0.0"
+  }
+}

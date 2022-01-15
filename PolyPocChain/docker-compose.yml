@@ -1,0 +1,79 @@
+version: "3.9"
+
+services:
+  node1:
+    image: "skalv/polypoc-node_1:latest"
+    container_name: "polypoc_1"
+    networks:
+      polypoc:
+        ipv4_address: 172.18.0.2
+    ports:
+      - "10001:1478"
+      - "10002:8545"
+      - "10003:9632"
+    command: "polygon-sdk server \
+      --data-dir ./chainData \
+      --chain genesis.json \
+      --grpc 0.0.0.0:10002 \
+      --libp2p 0.0.0.0:10001 \
+      --jsonrpc 0.0.0.0:10003 \
+      --seal"
+  node2:
+    image: "skalv/polypoc-node_2:latest"
+    container_name: "polypoc_2"
+    networks:
+      polypoc:
+        ipv4_address: 172.18.0.3
+    ports:
+      - "20001:1478"
+      - "20002:8545"
+      - "20003:9632"
+    command: "polygon-sdk server \
+      --data-dir ./chainData \
+      --chain genesis.json \
+      --grpc 0.0.0.0:20002 \
+      --libp2p 0.0.0.0:20001 \
+      --jsonrpc 0.0.0.0:20003 \
+      --seal"
+  node3:
+    image: "skalv/polypoc-node_3:latest"
+    container_name: "polypoc_3"
+    networks:
+      polypoc:
+        ipv4_address: 172.18.0.4
+    ports:
+      - "30001:1478"
+      - "30002:8545"
+      - "30003:9632"
+    command: "polygon-sdk server \
+      --data-dir ./chainData \
+      --chain genesis.json \
+      --grpc 0.0.0.0:30002 \
+      --libp2p 0.0.0.0:30001 \
+      --jsonrpc 0.0.0.0:30003 \
+      --seal"
+  node4:
+    image: "skalv/polypoc-node_4:latest"
+    container_name: "polypoc_4"
+    networks:
+      polypoc:
+        ipv4_address: 172.18.0.5
+    ports:
+      - "40001:1478"
+      - "40002:8545"
+      - "40003:9632"
+    command: "polygon-sdk server \
+      --data-dir ./chainData \
+      --chain genesis.json \
+      --grpc 0.0.0.0:40002 \
+      --libp2p 0.0.0.0:40001 \
+      --jsonrpc 0.0.0.0:40003 \
+      --seal"
+
+networks:
+  polypoc:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/24
